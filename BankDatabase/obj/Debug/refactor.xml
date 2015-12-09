@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0">
+  <Operation Name="Rename Refactor" Key="260c1658-b183-4e30-80a8-14eb75729701" ChangeDateTime="12/09/2015 01:21:17" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[MoneyOrder].[Requested]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[MoneyOrder]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Signed" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="7e732d60-a0f0-4d59-8fe6-f061dd96b156" ChangeDateTime="12/09/2015 05:52:52" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[MoneyOrderSecretIdentity].[MoneyOrder]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[MoneyOrderSecretIdentity]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="MoneyOrderID" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="aeb5374d-b780-4b0b-ad67-4ee02ff44da6" ChangeDateTime="12/09/2015 20:43:43" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+    <Property Name="ElementName" Value="[dbo].[MoneyOrder].[Message]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[MoneyOrder]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="BlindSignature" />
+  </Operation>
+</Operations>

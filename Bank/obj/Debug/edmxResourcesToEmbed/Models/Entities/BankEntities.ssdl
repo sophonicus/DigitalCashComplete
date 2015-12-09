@@ -1,0 +1,54 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="BankDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__RefactorLog">
+    <Key>
+      <PropertyRef Name="OperationKey" />
+    </Key>
+    <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="CustomerAccount">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Name" Type="varchar(max)" />
+    <Property Name="Balance" Type="decimal" Precision="18" Scale="2" />
+  </EntityType>
+  <EntityType Name="MoneyOrder">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="UniqueId" Type="varchar(max)" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Signed" Type="bit" Nullable="false" />
+    <Property Name="Signature" Type="varchar(max)" />
+    <Property Name="BlindSignature" Type="varchar(max)" Nullable="false" />
+    <Property Name="Cashed" Type="bit" Nullable="false" />
+    <Property Name="CashRequest" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MoneyOrderSecretIdentity">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Left" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Right" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="MoneyOrderID" Type="int" Nullable="false" />
+  </EntityType>
+  <EntityType Name="Signature">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Public" Type="varchar(max)" Nullable="false" />
+    <Property Name="Private" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityContainer Name="BankDatabaseModelStoreContainer">
+    <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="CustomerAccount" EntityType="Self.CustomerAccount" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MoneyOrder" EntityType="Self.MoneyOrder" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MoneyOrderSecretIdentity" EntityType="Self.MoneyOrderSecretIdentity" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="Signature" EntityType="Self.Signature" Schema="dbo" store:Type="Tables" />
+  </EntityContainer>
+</Schema>

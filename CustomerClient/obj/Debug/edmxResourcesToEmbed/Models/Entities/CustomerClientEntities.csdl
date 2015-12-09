@@ -1,0 +1,89 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CustomerClientDatabaseModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+  <EntityContainer Name="CustomerClientDatabaseEntities" annotation:LazyLoadingEnabled="true">
+    <EntitySet Name="C__RefactorLog" EntityType="CustomerClientDatabaseModel.C__RefactorLog" />
+    <EntitySet Name="BankPublicKeys" EntityType="CustomerClientDatabaseModel.BankPublicKey" />
+    <EntitySet Name="MoneyOrders" EntityType="CustomerClientDatabaseModel.MoneyOrder" />
+    <EntitySet Name="MoneyOrderPartialIdentities" EntityType="CustomerClientDatabaseModel.MoneyOrderPartialIdentity" />
+    <EntitySet Name="SecretIdentities" EntityType="CustomerClientDatabaseModel.SecretIdentity" />
+    <AssociationSet Name="FK__MoneyOrde__Money__25869641" Association="CustomerClientDatabaseModel.FK__MoneyOrde__Money__25869641">
+      <End Role="MoneyOrder" EntitySet="MoneyOrders" />
+      <End Role="MoneyOrderPartialIdentity" EntitySet="MoneyOrderPartialIdentities" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MoneyOrde__Secre__1BFD2C07" Association="CustomerClientDatabaseModel.FK__MoneyOrde__Secre__1BFD2C07">
+      <End Role="SecretIdentity" EntitySet="SecretIdentities" />
+      <End Role="MoneyOrderPartialIdentity" EntitySet="MoneyOrderPartialIdentities" />
+    </AssociationSet>
+  </EntityContainer>
+  <EntityType Name="C__RefactorLog">
+    <Key>
+      <PropertyRef Name="OperationKey" />
+    </Key>
+    <Property Name="OperationKey" Type="Guid" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BankPublicKey">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Public" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+  </EntityType>
+  <EntityType Name="MoneyOrder">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="UniqueID" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Amount" Type="Decimal" Precision="18" Scale="2" />
+    <Property Name="Signed" Type="Boolean" Nullable="false" />
+    <Property Name="Signature" Type="String" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="Message" Type="String" Nullable="false" MaxLength="Max" FixedLength="false" Unicode="false" />
+    <Property Name="IsRequested" Type="Boolean" Nullable="false" />
+    <Property Name="Approved" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="MoneyOrderPartialIdentities" Relationship="CustomerClientDatabaseModel.FK__MoneyOrde__Money__25869641" FromRole="MoneyOrder" ToRole="MoneyOrderPartialIdentity" />
+  </EntityType>
+  <EntityType Name="MoneyOrderPartialIdentity">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="MoneyOrderID" Type="Int32" Nullable="false" />
+    <Property Name="SecretIdentityId" Type="Int32" Nullable="false" />
+    <Property Name="SelectedBit" Type="Boolean" Nullable="false" />
+    <NavigationProperty Name="MoneyOrder" Relationship="CustomerClientDatabaseModel.FK__MoneyOrde__Money__25869641" FromRole="MoneyOrderPartialIdentity" ToRole="MoneyOrder" />
+    <NavigationProperty Name="SecretIdentity" Relationship="CustomerClientDatabaseModel.FK__MoneyOrde__Secre__1BFD2C07" FromRole="MoneyOrderPartialIdentity" ToRole="SecretIdentity" />
+  </EntityType>
+  <EntityType Name="SecretIdentity">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="Int32" Nullable="false" />
+    <Property Name="Left" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="Right" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="MoneyOrderPartialIdentities" Relationship="CustomerClientDatabaseModel.FK__MoneyOrde__Secre__1BFD2C07" FromRole="SecretIdentity" ToRole="MoneyOrderPartialIdentity" />
+  </EntityType>
+  <Association Name="FK__MoneyOrde__Money__25869641">
+    <End Type="CustomerClientDatabaseModel.MoneyOrder" Role="MoneyOrder" Multiplicity="1" />
+    <End Type="CustomerClientDatabaseModel.MoneyOrderPartialIdentity" Role="MoneyOrderPartialIdentity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MoneyOrder">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MoneyOrderPartialIdentity">
+        <PropertyRef Name="MoneyOrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MoneyOrde__Secre__1BFD2C07">
+    <End Type="CustomerClientDatabaseModel.SecretIdentity" Role="SecretIdentity" Multiplicity="1" />
+    <End Type="CustomerClientDatabaseModel.MoneyOrderPartialIdentity" Role="MoneyOrderPartialIdentity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SecretIdentity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MoneyOrderPartialIdentity">
+        <PropertyRef Name="SecretIdentityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+</Schema>

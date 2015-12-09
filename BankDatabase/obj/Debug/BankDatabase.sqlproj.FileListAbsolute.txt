@@ -1,0 +1,9 @@
+C:\Users\Sophonias\Documents\Visual Studio 2015\Projects\DigitalCashComplete\BankDatabase\bin\Debug\BankDatabase.dacpac
+C:\Users\Sophonias\Documents\Visual Studio 2015\Projects\DigitalCashComplete\BankDatabase\bin\Debug\BankDatabase.dll
+C:\Users\Sophonias\Documents\Visual Studio 2015\Projects\DigitalCashComplete\BankDatabase\bin\Debug\BankDatabase.pdb
+C:\Users\Sophonias\Documents\Visual Studio 2015\Projects\DigitalCashComplete\BankDatabase\obj\Debug\BankDatabase.dll
+C:\Users\Sophonias\Documents\Visual Studio 2015\Projects\DigitalCashComplete\BankDatabase\obj\Debug\BankDatabase.pdb
+C:\Users\Sophonias\Documents\Visual Studio 2015\Projects\DigitalCashComplete\BankDatabase\obj\Debug\Model.xml
+C:\Users\Sophonias\Documents\Visual Studio 2015\Projects\DigitalCashComplete\BankDatabase\obj\Debug\refactor.xml
+C:\Users\Sophonias\Documents\Visual Studio 2015\Projects\DigitalCashComplete\BankDatabase\obj\Debug\postdeploy.sql
+C:\Users\Sophonias\Documents\Visual Studio 2015\Projects\DigitalCashComplete\BankDatabase\obj\Debug\predeploy.sql

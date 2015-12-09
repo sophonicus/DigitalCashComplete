@@ -1,0 +1,109 @@
+﻿@using Bank.ViewModels;
+
+@model MoneyOrderVM
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<input id="createSignature" type="button" onclick="createSignature();" value="Create Bank Signature" />
+<input id="getPublicKey" type="button" onclick="getPublicKey();" value="Get Public Key" />
+
+<div id="AddSignatureMessage">
+    <h4>Create Signature Response</h4>
+</div>
+
+<div id="moneyOrderRequests">
+    <table class="grid">
+        <tr>
+            <th>
+                @Html.DisplayName("Money Order Amount")
+            </th>
+
+            <th>
+                @Html.DisplayName("Is Requested")
+            </th>
+
+            <th>
+                @Html.DisplayName("Is Signed")
+            </th>
+
+            <th></th>
+        </tr>
+
+        @if (Model.Requests.Count() != 0)
+        {
+            foreach (var item in Model.Requests)
+            {
+                <tr>
+                    @Html.Partial("_MoneyOrders", item)
+                </tr>
+            }
+        }
+
+    </table>
+</div>
+
+<div id="CashRequests" >
+    <table class="grid">
+        <tr>
+            <th>
+                @Html.DisplayName("Money Order Amount")
+            </th>
+
+            <th>
+                @Html.DisplayName("Cash Request Status")
+            </th>
+
+            <th>
+                @Html.DisplayName("Signature Status")
+            </th>
+
+            <th>
+                @Html.DisplayName("MoneyOrder Status")
+            </th>
+
+            <th></th>
+        </tr>
+
+        @if (Model.Requests.Count() != 0)
+        {
+            foreach (var item in Model.CashRequests)
+            {
+                <tr>
+                    @Html.Partial("_CashRequests", item)
+                </tr>
+            }
+        }
+
+    </table>
+</div>
+
+<script>
+
+    function createSignature()
+    {
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost:58019/Bank/StoreSignature',
+        }).done(function (data) {
+            $("AddSignatureMessage").text(data);
+        }).error(function (data) {
+            $("AddSignatureMessage").text(data);
+        });
+    }
+
+    function getPublicKey() {
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost:58019/Bank/PublicKey',
+        }).done(function (data) {
+            $("AddSignatureMessage").text(data);
+        }).error(function (data) {
+            $("AddSignatureMessage").text(data);
+        });
+    }
+
+</script>

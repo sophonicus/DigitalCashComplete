@@ -1,0 +1,114 @@
+﻿@using CustomerClient.ViewModels;
+
+@model MoneyOrderVM
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Customer</h2>
+<input id="amount" type="text" />
+<input id="getMORequest" type="button" onclick="getMORequest();" value="Create MO Request" />
+
+<div id="GetPublicMessage">
+
+</div>
+<div id="moneyOrderRequests">
+    <table class="grid">
+        <tr>
+            <th>
+                @Html.DisplayName("Money Order Amount")
+            </th>
+
+            <th>
+                @Html.DisplayName("Is Requested")
+            </th>
+
+            <th>
+                @Html.DisplayName("Is Signed")
+            </th>
+
+            <th></th>
+        </tr>
+        @if (Model.Requests.Count() != 0)
+        {
+            foreach (var item in Model.Requests)
+            {
+                <tr>
+                    @Html.Partial("_Requests", item)
+                </tr>
+            }
+        }
+
+    </table>
+</div>
+
+<div id="moneyOrders">
+    <table class="grid">
+        <tr>
+            <th>
+                @Html.DisplayName("Money Order Amount")
+            </th>
+
+            <th>
+                @Html.DisplayName("Cash Request Status")
+            </th>
+
+            <th>
+                @Html.DisplayName("Is Signed")
+            </th>
+            <th>
+                @Html.DisplayName("Cashed")
+            </th>
+
+            <th></th>
+        </tr>
+        @if (Model.MoneyOrders.Count() != 0)
+        {
+            foreach (var item in Model.MoneyOrders)
+            {
+                <tr>
+                    @Html.Partial("_MoneyOrders", item)
+                </tr>
+            }
+        }
+
+    </table>
+</div>
+
+
+    <script>
+        var pubKey;
+
+        function getMORequest() {
+
+            var amt = $("#amount").val();
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:58355/Customers/CreateMoneyOrderRequest',
+                data: {
+                    amount: amt
+                }
+            }).done(function (data) {
+                $("AddSignatureMessage").text(data);
+            }).error(function (data) {
+                $("AddSignatureMessage").text(data);
+            });
+        }
+
+
+        function getPublicKey() {
+            
+
+            $.ajax({
+                type: 'GET',
+                url: 'http://localhost:58355/Customers/SetPublicKey'
+            }).done(function (data) {
+
+                $("GetPublicMessage").append("<p>Public Key is set!!</p>");
+            }).error(function (data) {
+                $("GetPublicMessage").append("<p>Error setting public key.</p>");
+            });
+
+        }
+    </script>
+

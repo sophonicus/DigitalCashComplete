@@ -1,0 +1,6 @@
+C:\Users\Sophonias\Documents\Visual Studio 2015\Projects\DigitalCashComplete\Common\bin\Debug\Common.dll
+C:\Users\Sophonias\Documents\Visual Studio 2015\Projects\DigitalCashComplete\Common\bin\Debug\Common.pdb
+C:\Users\Sophonias\Documents\Visual Studio 2015\Projects\DigitalCashComplete\Common\bin\Debug\BouncyCastle.Crypto.dll
+C:\Users\Sophonias\Documents\Visual Studio 2015\Projects\DigitalCashComplete\Common\bin\Debug\BouncyCastle.Crypto.pdb
+C:\Users\Sophonias\Documents\Visual Studio 2015\Projects\DigitalCashComplete\Common\obj\Debug\Common.dll
+C:\Users\Sophonias\Documents\Visual Studio 2015\Projects\DigitalCashComplete\Common\obj\Debug\Common.pdb

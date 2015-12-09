@@ -1,0 +1,85 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="CustomerClientDatabaseModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+  <EntityType Name="__RefactorLog">
+    <Key>
+      <PropertyRef Name="OperationKey" />
+    </Key>
+    <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
+  </EntityType>
+  <EntityType Name="BankPublicKey">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Public" Type="varchar(max)" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MoneyOrder">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="UniqueID" Type="varchar(max)" Nullable="false" />
+    <Property Name="Amount" Type="decimal" Precision="18" Scale="2" />
+    <Property Name="Signed" Type="bit" Nullable="false" />
+    <Property Name="Signature" Type="varchar(max)" />
+    <Property Name="Message" Type="varchar(max)" Nullable="false" />
+    <Property Name="IsRequested" Type="bit" Nullable="false" />
+    <Property Name="Approved" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="MoneyOrderPartialIdentity">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="MoneyOrderID" Type="int" Nullable="false" />
+    <Property Name="SecretIdentityId" Type="int" Nullable="false" />
+    <Property Name="SelectedBit" Type="bit" Nullable="false" />
+  </EntityType>
+  <EntityType Name="SecretIdentity">
+    <Key>
+      <PropertyRef Name="Id" />
+    </Key>
+    <Property Name="Id" Type="int" Nullable="false" />
+    <Property Name="Left" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="Right" Type="varchar" MaxLength="50" Nullable="false" />
+  </EntityType>
+  <Association Name="FK__MoneyOrde__Money__25869641">
+    <End Role="MoneyOrder" Type="Self.MoneyOrder" Multiplicity="1" />
+    <End Role="MoneyOrderPartialIdentity" Type="Self.MoneyOrderPartialIdentity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="MoneyOrder">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MoneyOrderPartialIdentity">
+        <PropertyRef Name="MoneyOrderID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK__MoneyOrde__Secre__1BFD2C07">
+    <End Role="SecretIdentity" Type="Self.SecretIdentity" Multiplicity="1" />
+    <End Role="MoneyOrderPartialIdentity" Type="Self.MoneyOrderPartialIdentity" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="SecretIdentity">
+        <PropertyRef Name="Id" />
+      </Principal>
+      <Dependent Role="MoneyOrderPartialIdentity">
+        <PropertyRef Name="SecretIdentityId" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityContainer Name="CustomerClientDatabaseModelStoreContainer">
+    <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="BankPublicKey" EntityType="Self.BankPublicKey" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MoneyOrder" EntityType="Self.MoneyOrder" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="MoneyOrderPartialIdentity" EntityType="Self.MoneyOrderPartialIdentity" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="SecretIdentity" EntityType="Self.SecretIdentity" Schema="dbo" store:Type="Tables" />
+    <AssociationSet Name="FK__MoneyOrde__Money__25869641" Association="Self.FK__MoneyOrde__Money__25869641">
+      <End Role="MoneyOrder" EntitySet="MoneyOrder" />
+      <End Role="MoneyOrderPartialIdentity" EntitySet="MoneyOrderPartialIdentity" />
+    </AssociationSet>
+    <AssociationSet Name="FK__MoneyOrde__Secre__1BFD2C07" Association="Self.FK__MoneyOrde__Secre__1BFD2C07">
+      <End Role="SecretIdentity" EntitySet="SecretIdentity" />
+      <End Role="MoneyOrderPartialIdentity" EntitySet="MoneyOrderPartialIdentity" />
+    </AssociationSet>
+  </EntityContainer>
+</Schema>

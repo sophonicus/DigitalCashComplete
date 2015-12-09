@@ -1,0 +1,45 @@
+﻿@model CustomerClient.Models.Entities.MoneyOrder
+
+<td>
+    @Html.DisplayFor(model => model.Amount)
+    <input type="hidden" id="moId" value="@string.Format(Model.Id.ToString())" />
+</td>
+
+<td>
+
+    @string.Format(Model.CashRequest ? "Cash Requested" : "Cash not Requested")
+</td>
+
+<td>
+    @string.Format(Model.Signed ? "Signed" : "Not Signed")
+</td>
+<td>
+    @string.Format(Model.Cashed ? "Cashed" : "Not Cashed")
+</td>
+<td>
+    <input id="CashMO" type="Button" value="Cash Money Order" onclick="CashMO(@string.Format(Model.Id.ToString()));" />
+</td>
+
+<script>
+    var moRequest;
+
+
+
+    function CashMO(moId)
+    {
+        $.ajax({
+            type: 'GET',
+            url: 'http://localhost:58355/Customers/RequestCash',
+            data: {id : moId}
+        }).done(function (data) {
+
+            alert("Money Order Cashed!! You Get " + JSON.stringify(data.Amount) + " dollars" );
+        }).error(function (data) {
+            alert("Money Order Not Found!!");
+        });
+
+
+    }
+
+
+</script>

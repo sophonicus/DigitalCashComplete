@@ -1,0 +1,53 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="CustomerClientDatabaseModelStoreContainer" CdmEntityContainer="CustomerClientDatabaseEntities">
+    <EntitySetMapping Name="C__RefactorLog">
+      <EntityTypeMapping TypeName="CustomerClientDatabaseModel.C__RefactorLog">
+        <MappingFragment StoreEntitySet="__RefactorLog">
+          <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="BankPublicKeys">
+      <EntityTypeMapping TypeName="CustomerClientDatabaseModel.BankPublicKey">
+        <MappingFragment StoreEntitySet="BankPublicKey">
+          <ScalarProperty Name="Public" ColumnName="Public" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MoneyOrders">
+      <EntityTypeMapping TypeName="CustomerClientDatabaseModel.MoneyOrder">
+        <MappingFragment StoreEntitySet="MoneyOrder">
+          <ScalarProperty Name="Approved" ColumnName="Approved" />
+          <ScalarProperty Name="IsRequested" ColumnName="IsRequested" />
+          <ScalarProperty Name="Message" ColumnName="Message" />
+          <ScalarProperty Name="Signature" ColumnName="Signature" />
+          <ScalarProperty Name="Signed" ColumnName="Signed" />
+          <ScalarProperty Name="Amount" ColumnName="Amount" />
+          <ScalarProperty Name="UniqueID" ColumnName="UniqueID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="MoneyOrderPartialIdentities">
+      <EntityTypeMapping TypeName="CustomerClientDatabaseModel.MoneyOrderPartialIdentity">
+        <MappingFragment StoreEntitySet="MoneyOrderPartialIdentity">
+          <ScalarProperty Name="SelectedBit" ColumnName="SelectedBit" />
+          <ScalarProperty Name="SecretIdentityId" ColumnName="SecretIdentityId" />
+          <ScalarProperty Name="MoneyOrderID" ColumnName="MoneyOrderID" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SecretIdentities">
+      <EntityTypeMapping TypeName="CustomerClientDatabaseModel.SecretIdentity">
+        <MappingFragment StoreEntitySet="SecretIdentity">
+          <ScalarProperty Name="Right" ColumnName="Right" />
+          <ScalarProperty Name="Left" ColumnName="Left" />
+          <ScalarProperty Name="Id" ColumnName="Id" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
